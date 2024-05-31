@@ -2,15 +2,12 @@
 //For example, [2, 4, 6, 2, 5] should return 13, since we pick 2, 6, and 5. [5, 1, 1, 5] should return 10, since we pick 5 and 5.
 [4000, 6000, 5000, 1000, 1000]
 
-function problem9 (array, sums = []) {
-    let restIntegers = []
-    
-    for (let i = 0; i < array.length; i++) {
-        let zmienna = array.slice(0, i).concat(array.slice(i + 1, array.length))
-        console.log(zmienna)
-    }
-}
-console.log(problem9([1, 2, 3, 4]))
-//                 0        1       2       3           4
-const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
-console.log(animals.slice(2, 5))
+function problem9 (array, sums = [], i = 0, non_adjacent_numbers = array.slice(0, i - 1).concat(array.slice(i + 2, array.length))) {
+    if (i === 0) non_adjacent_numbers = array.slice(2)
+    if (array.length < 1) return sums
+    sums.push(0)
+    sums[i] += array[i]
+    problem9(array = non_adjacent_numbers, sums)
+    return sums
+} 
+console.log(problem9([4000, 6000, 5000, 1000, 1000]))
