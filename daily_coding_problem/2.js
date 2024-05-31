@@ -21,3 +21,28 @@ function problem2 (array) {
 
 console.log(problem2([1, 2, 3, 4, 5]))
 
+function betterProblem2 (array, result = []) {
+    for (let i = 0; i < array.length; i++) {
+        let rest = array.slice(0, i).concat(array.slice(i + 1, array.length))
+        let product = 1
+        for (let k = 0; k < rest.length; k++) {
+            product *= rest[k]
+        }
+        result.push(product)
+    }
+    return result
+}
+
+console.log(betterProblem2([1, 2, 3, 4, 5]))
+
+function easiestProblem2 (array, result = [], number = 0) {
+    if (number === array.length) return result
+    let toPush = 1
+    for (let i = 0; i < array.length; i++) {
+        toPush *= array[i]
+    }
+    result.push(toPush/array[number])
+    return easiestProblem2 (array, result, number + 1)
+}
+
+console.log(easiestProblem2([1, 2, 3, 4, 5]))
